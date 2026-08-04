@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cwghqv3vgo4fg"]
+
+[ext_resource type="Script" uid="uid://dv6gp7kvv5we6" path="res://character_body_2d.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://drqeogvk73lqr" path="res://Assets/Flappy Duck2.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://x57ignjuoe62" path="res://Assets/Flappy Duck1.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://dqx7m2shdpkcv" path="res://Assets/Flappy Goose2.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://dsex44vmn4457" path="res://Assets/Flappy Goose1.png" id="5_dw050"]
+[ext_resource type="Texture2D" uid="uid://qsmcp3cromgu" path="res://Assets/Flappy Mallard2.png" id="6_b26j0"]
+[ext_resource type="Texture2D" uid="uid://buyk6daut51r3" path="res://Assets/Flappy Mallard1.png" id="7_n7ghd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_glgfw"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_glgfw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}],
+"loop": 1,
+"name": &"duck flap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_i3pqv")
+}],
+"loop": 1,
+"name": &"duck fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}],
+"loop": 1,
+"name": &"goose flap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dw050")
+}],
+"loop": 1,
+"name": &"goose fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_b26j0")
+}],
+"loop": 1,
+"name": &"mallard flap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_n7ghd")
+}],
+"loop": 1,
+"name": &"mallard fly",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=1680310173]
+script = ExtResource("1_onrkg")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1134610472]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_glgfw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=386364462]
+sprite_frames = SubResource("SpriteFrames_glgfw")
+animation = &"duck fly"
+offset = Vector2(1, -2)

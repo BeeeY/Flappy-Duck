@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://siki7mf4lmmq"]
+
+[ext_resource type="FontFile" uid="uid://b7odnk8b6270o" path="res://Assets/BasicPixelFont.ttf" id="1_37p78"]
+[ext_resource type="Script" uid="uid://1f0lsfbbkoam" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="Texture2D" uid="uid://cpdt2q4roip2h" path="res://Assets/Flappy Duck Title Backround.png" id="2_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://drqeogvk73lqr" path="res://Assets/Flappy Duck2.png" id="4_1xsix"]
+[ext_resource type="Texture2D" uid="uid://dqx7m2shdpkcv" path="res://Assets/Flappy Goose2.png" id="5_rftc2"]
+[ext_resource type="Texture2D" uid="uid://qsmcp3cromgu" path="res://Assets/Flappy Mallard2.png" id="6_61f8s"]
+
+[node name="HUD" type="CanvasLayer" unique_id=998818178]
+script = ExtResource("1_64ctp")
+
+[node name="Backround" type="Sprite2D" parent="." unique_id=102017696]
+position = Vector2(578, 325)
+texture = ExtResource("2_8sq4i")
+
+[node name="StartButton" type="Button" parent="." unique_id=831981488]
+offset_left = 476.0
+offset_top = 357.0
+offset_right = 667.0
+offset_bottom = 453.0
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 50
+text = "Start"
+icon_alignment = 1
+
+[node name="Title" type="Label" parent="." unique_id=2064812916]
+offset_left = 299.0
+offset_top = 192.0
+offset_right = 837.0
+offset_bottom = 286.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 100
+text = "Flappy Duck"
+
+[node name="Score" type="Label" parent="." unique_id=1190939364]
+offset_left = 545.0
+offset_top = 59.0
+offset_right = 585.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Countdown" type="Label" parent="." unique_id=297760352]
+offset_left = 556.0
+offset_top = 381.0
+offset_right = 596.0
+offset_bottom = 429.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 50
+text = "3"
+horizontal_alignment = 1
+
+[node name="DuckSelect" type="Button" parent="." unique_id=1021334229]
+offset_left = 436.0
+offset_top = 473.0
+offset_right = 709.0
+offset_bottom = 558.0
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 40
+text = "Duck Select"
+
+[node name="Back" type="Button" parent="." unique_id=210695392]
+offset_left = 187.0
+offset_top = 230.0
+offset_right = 306.0
+offset_bottom = 282.0
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
+[node name="Duck" type="Button" parent="." unique_id=1099961796]
+offset_left = 706.0
+offset_top = 370.0
+offset_right = 886.0
+offset_bottom = 541.0
+icon = ExtResource("4_1xsix")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Goose" type="Button" parent="." unique_id=221393041]
+offset_left = 259.0
+offset_top = 368.0
+offset_right = 454.0
+offset_bottom = 545.0
+icon = ExtResource("5_rftc2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Mallard" type="Button" parent="." unique_id=1607055888]
+offset_left = 490.0
+offset_top = 370.0
+offset_right = 663.0
+offset_bottom = 544.0
+icon = ExtResource("6_61f8s")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Space" type="Label" parent="." unique_id=176731476]
+offset_left = 318.0
+offset_top = 272.0
+offset_right = 821.0
+offset_bottom = 371.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 50
+text = "Press Space to Jump &
+ Q to Quack"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="DuckSelect" to="." method="_on_duck_select_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Duck" to="." method="_on_duck_pressed"]
+[connection signal="pressed" from="Goose" to="." method="_on_goose_pressed"]
+[connection signal="pressed" from="Mallard" to="." method="_on_mallard_pressed"]

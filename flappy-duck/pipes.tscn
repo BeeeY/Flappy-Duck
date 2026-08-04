@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cx5ix32lehl76"]
+
+[ext_resource type="Script" uid="uid://ccvt654u44bid" path="res://pipes.gd" id="1_og227"]
+[ext_resource type="Texture2D" uid="uid://43eh835p4l1h" path="res://Assets/Flappy Duck Tube.png" id="2_l4tgv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glgfw"]
+size = Vector2(92, 525)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufewp"]
+size = Vector2(94, 523)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ra5af"]
+size = Vector2(16, 243)
+
+[node name="Pipes" type="Node2D" unique_id=1384898865]
+script = ExtResource("1_og227")
+
+[node name="PipeTop" type="Area2D" parent="." unique_id=1290948292]
+position = Vector2(-2, -390)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeTop" unique_id=1113671465]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_glgfw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="PipeTop" unique_id=344261679]
+position = Vector2(1, -4.5776367e-05)
+rotation = -3.1415925
+scale = Vector2(7, 7)
+texture = ExtResource("2_l4tgv")
+
+[node name="PipeBottom" type="Area2D" parent="." unique_id=115226122]
+position = Vector2(0, 390)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeBottom" unique_id=169938306]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ufewp")
+
+[node name="Sprite2D" type="Sprite2D" parent="PipeBottom" unique_id=1695480819]
+position = Vector2(-6.1035156e-05, -1)
+scale = Vector2(7, 7)
+texture = ExtResource("2_l4tgv")
+
+[node name="ScoreArea" type="Area2D" parent="." unique_id=1027269977]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea" unique_id=631468108]
+shape = SubResource("RectangleShape2D_ra5af")
+
+[connection signal="body_entered" from="PipeTop" to="." method="_on_pipe_top_body_entered"]
+[connection signal="body_entered" from="PipeBottom" to="." method="_on_pipe_bottom_body_entered"]
+[connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]

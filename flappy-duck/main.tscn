@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bhyy5j14poavn"]
+
+[ext_resource type="Script" uid="uid://c111en2ktteyi" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cwghqv3vgo4fg" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://siki7mf4lmmq" path="res://hud.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cx5ix32lehl76" path="res://pipes.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://ck6pian1b1f5x" path="res://Assets/Flappy Duck Backround.png" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://c24j8k2tqj3cx" path="res://Assets/418509__mikes-multimedia__single-quack-from-a-duck.wav" id="6_7mycd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glgfw"]
+size = Vector2(1148, 20)
+
+[node name="Main" type="Node2D" unique_id=1575631451]
+script = ExtResource("1_h2yge")
+pipe_scene = ExtResource("4_1bvp3")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=2070609752]
+scroll_scale = Vector2(2, 2)
+repeat_size = Vector2(2500, 0)
+autoscroll = Vector2(-50, 0)
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=968738320]
+position = Vector2(740, 333)
+texture = ExtResource("5_lquwl")
+
+[node name="Player" parent="." unique_id=1680310173 instance=ExtResource("1_ig7tw")]
+position = Vector2(230.00002, 330.00003)
+scale = Vector2(5, 5)
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1823859467]
+position = Vector2(227, 330)
+
+[node name="HUD" parent="." unique_id=998818178 instance=ExtResource("3_1bvp3")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=738097340]
+position = Vector2(10, 659)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1463806202]
+position = Vector2(564, 0)
+shape = SubResource("RectangleShape2D_glgfw")
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=869580162]
+position = Vector2(-7, -5)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=1776284101]
+position = Vector2(564, 0)
+shape = SubResource("RectangleShape2D_glgfw")
+
+[node name="Pipes" parent="." unique_id=1384898865 groups=["Pipes"] instance=ExtResource("4_1bvp3")]
+position = Vector2(-66, 61)
+
+[node name="PipeTimer" type="Timer" parent="." unique_id=737689340]
+wait_time = 3.0
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=922103850]
+stream = ExtResource("6_7mycd")
+max_polyphony = 5
+
+[connection signal="pipe_hit" from="." to="HUD" method="_on_main_pipe_hit"]
+[connection signal="pipe_scored" from="." to="HUD" method="_on_main_pipe_scored"]
+[connection signal="countdown_ended" from="HUD" to="." method="_on_hud_countdown_ended"]
+[connection signal="duck_selected" from="HUD" to="." method="_on_hud_duck_selected"]
+[connection signal="game_over" from="HUD" to="." method="_on_hud_game_over"]
+[connection signal="goose_selected" from="HUD" to="." method="_on_hud_goose_selected"]
+[connection signal="mallard_selected" from="HUD" to="." method="_on_hud_mallard_selected"]
+[connection signal="start_game" from="HUD" to="." method="_on_start_game"]
+[connection signal="body_entered" from="Area2D" to="HUD" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="HUD" method="_on_area_2d_body_entered"]
+[connection signal="hit" from="Pipes" to="HUD" method="_on_pipes_hit"]
+[connection signal="scored" from="Pipes" to="HUD" method="_on_pipes_scored"]
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
