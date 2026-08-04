@@ -5,3 +5,5 @@ Play Here: https://magenta-biscotti-f7fb7e.netlify.app/
 
 Controls:
 Space for Jump & Q for Quack
+
+Installing: Download flappy duck folder and use import in godot.
